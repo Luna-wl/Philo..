@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 23:00:27 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/03 16:33:31 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:35:05 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,31 @@
 # include <stdint.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <memory.h>
+
+# define TAKE_FORKS "has taken a fork"
+# define THINKING "is thinking"
+# define SLEEPING "is sleeping"
+# define EATING "is eating"
+# define DIED "died"
+
+typedef struct s_input
+{
+	int				num;
+	u_int64_t		die_time;
+	u_int64_t		eat_time;
+	u_int64_t		sleep_time;
+	int				must_eat;
+}	t_input;
 
 typedef struct s_philo
 {
-	pthread_t		philo;
-	int				index;
+	struct t_input	*input;
+	pthread_t		thread;
+	int				id;
+	int				eat_cont;
+	u_int64_t		time;
+	pthread_mutex_t	lock;
 }	t_philo;
 
 // tool.c

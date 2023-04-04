@@ -2,6 +2,8 @@
 *.d
 *.dSYM
 .DS_Store
+.vscode
+philo
 
 # Object files
 *.o
