@@ -1,6 +1,6 @@
 NAME = philo
 
-SRCS = philo.c tool.c
+SRCS = philo.c tool.c init_input.c init_philo.c
 
 CC = gcc
 CFLAGS = -g -Wall -Werror -Wextra

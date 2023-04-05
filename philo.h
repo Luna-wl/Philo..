@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 23:00:27 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/04 16:35:05 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/04 19:12:03 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_philo
 	pthread_t		thread;
 	int				id;
 	int				eat_cont;
-	u_int64_t		time;
+	u_int64_t		t_die;
 	pthread_mutex_t	lock;
 }	t_philo;
 
@@ -54,5 +54,8 @@ long	my_atoi(char *str);
 void	ft_putstr_fd(char *s, int fd);
 // philo.c
 int		check_argv(char **av);
+void	init_philo_input(t_input *philo, char **s);
+void	test(t_input *philo);
+t_philo	*create_philo(t_input *input);
 
 #endif

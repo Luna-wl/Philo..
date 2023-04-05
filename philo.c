@@ -6,71 +6,11 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 23:00:33 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/04 16:27:39 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/04 19:11:42 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	check_argv(char **av)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (av[i])
-	{
-		j = 0;
-		while (av[i][j])
-		{
-			if (av[i][j] < '0' || av[i][j] > '9')
-				return (0);
-			j++;
-		}
-		if (my_atoi(av[i]) > 2147483647)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-void	init_philo_input(t_input *philo, char **s)
-{
-	philo->num = (int)my_atoi(s[0]);
-	philo->die_time = (u_int64_t)my_atoi(s[1]);
-	philo->eat_time = (u_int64_t)my_atoi(s[2]);
-	philo->sleep_time = (u_int64_t)my_atoi(s[3]);
-	if (s[4])
-		philo->must_eat = (int)my_atoi(s[4]);
-	else
-		philo->must_eat = -1;
-	
-}
-
-void	test(t_input *philo)
-{
-	printf(BLU"philo->num = %d\n", philo->num);
-	printf("philo->die = %llu\n", philo->die_time);
-	printf("philo->eat = %llu\n", philo->eat_time);
-	printf("philo->sleep = %llu\n", philo->sleep_time);
-	printf("philo->must_eat = %d\n"RESET, philo->must_eat);
-}
-
-t_philo	*create_philo(t_input *input)
-{
-	t_philo	*philo;
-	int		i;
-
-	philo = malloc(sizeof(t_philo) * input->num);
-	if (!philo)
-		return (0);
-	i = -1;
-	while (++i < input->num)
-	{
-		philo[i].id = i + 1;
-	}
-	return (philo);
-}
 
 int	main(int ac, char **av)
 {
@@ -91,8 +31,6 @@ int	main(int ac, char **av)
 		ft_putstr_fd(BLU"This is not what I want!\n"RESET, 1);
 	init_philo_input(&input, &av[1]);
 	philo = create_philo(&input);
-	// for (int j = 0; philo[j].id; j++)
-	// 	printf(YEL"philo[%d] = %d\n"RESET, j, philo[j].id);
 }
 
 /*
