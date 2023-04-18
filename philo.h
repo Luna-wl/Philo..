@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 23:00:27 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/05 17:08:12 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/18 13:01:19 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,31 +31,38 @@
 typedef struct s_input
 {
 	int				num;
-	u_int64_t		die_time;
-	u_int64_t		eat_time;
-	u_int64_t		sleep_time;
+	long			die_time;
+	long			eat_time;
+	long			sleep_time;
 	int				must_eat;
+	pthread_mutex_t	print;
+	struct t_philo			*philo;
 }	t_input;
 
 typedef struct s_philo
 {
-	struct t_input	*input;
+	t_input			*input;
 	pthread_t		thread;
 	int				id;
 	int				eat_cont;
-	u_int64_t		t_die;
-	pthread_mutex_t	lock;
+	long			t_start;
+	pthread_mutex_t	fork;
 }	t_philo;
 
-// tool.c
+// tool
 int		ft_strlen(char *s);
 int		is_space(char str);
 long	my_atoi(char *str);
 void	ft_putstr_fd(char *s, int fd);
-// philo.c
+void	pim_error(char *s, int m);
+// philo
 int		check_argv(char **av);
 void	init_philo_input(t_input *philo, char **s);
-void	test(t_input *philo);
 t_philo	*create_philo(t_input *input);
+void	create_thread(t_philo *philo);
+void	pim_philo(long time, int id, char *msg);
+
+void	test(t_input *philo);
+void	test2(t_philo *philo);
 
 #endif

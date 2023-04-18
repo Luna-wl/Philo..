@@ -6,16 +6,11 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:42:08 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/18 12:58:40 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/18 13:00:49 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-// void	*routine()
-// {
-
-// }
 
 t_philo	*create_philo(t_input *input)
 {
@@ -29,7 +24,11 @@ t_philo	*create_philo(t_input *input)
 	while (++i < input->num)
 	{
 		philo[i].id = i + 1;
-		philo[i].t_die = input->die_time;
+		philo[i].t_start = 0;
+		philo[i].eat_cont = 0;
+		philo[i].input = input;
+		if (pthread_mutex_init(&philo[i].fork, NULL) != 0)
+			printf(MAG"Error at init mutex\n"RESET);
 	}
 	return (philo);
 }
