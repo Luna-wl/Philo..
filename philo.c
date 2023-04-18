@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 23:00:33 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/04 19:11:42 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/12 17:09:12 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,19 @@ int	main(int ac, char **av)
 
 	if (ac < 5 || ac > 6)
 	{
-		ft_putstr_fd(RED"You put the wrong input\n"RESET, 1);
-		return (0);
-	}
-	if (my_atoi(av[1]) <= 0)
-	{
-		ft_putstr_fd(RED"Philo must have at least 1, okay?\n"RESET, 1);
+		pim_error("You put the wrong input", 1);
 		return (0);
 	}
 	if (!check_argv(&av[1]))
-		ft_putstr_fd(BLU"This is not what I want!\n"RESET, 1);
+	{
+		pim_error("This is not what I want!", 0);
+		return (0);
+	}
 	init_philo_input(&input, &av[1]);
 	philo = create_philo(&input);
+	(void)philo;
+	create_thread(philo);
+	return (0);
 }
 
 /*

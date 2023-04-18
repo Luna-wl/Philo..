@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_philo.c                                       :+:      :+:    :+:   */
+/*   create_thread.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/04 16:42:08 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/12 17:09:21 by wluedara         ###   ########.fr       */
+/*   Created: 2023/04/11 16:50:35 by wluedara          #+#    #+#             */
+/*   Updated: 2023/04/12 17:08:38 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_philo	*create_philo(t_input *input)
+void	*routine(void *philosopher)
 {
-	t_philo	*philo;
-	int		i;
+	
+}
 
-	philo = malloc(sizeof(t_philo) * input->num);
-	if (!philo)
-		return (0);
+void	create_thread(t_philo *philo)
+{
+	int	i;
+
 	i = -1;
-	while (++i < input->num)
+	while (++i < philo->input->num)
 	{
-		philo[i].id = i + 1;
-		philo[i].t_start = 0;
-		philo[i].eat_cont = 0;
-		philo[i].input = input;
-		if (pthread_mutex_init(&philo[i].fork, NULL) != 0)
-			printf(MAG"Error at init mutex\n"RESET);
+		pthread_create(&philo[i].thread, NULL, routine, NULL);
+		
 	}
-	return (philo);
 }
