@@ -1,7 +1,6 @@
 NAME = philo
 
-SRCS = philo.c tool.c init_input.c init_philo.c 
-#create_thread.c
+SRCS = philo.c tool.c init_input.c init_philo.c utils.c create_thread.c
 
 CC = gcc
 CFLAGS = -g -Wall -Werror -Wextra

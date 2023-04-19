@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:57:38 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/12 16:20:53 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/18 21:41:56 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,11 @@ long	timestamp(void)
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
-void	pim_philo(long time, int id, char *msg)
+void	pim_philo(t_philo *philo, int id, char *msg)
 {
-	printf("%ld", time);
-	printf("%d", id);
-	if (msg == TAKE_FORKS)
-		printf(GRN"%s\n"RESET, msg);
-	else if (msg == THINKING)
-		printf(YEL"%s\n"RESET, msg);
-	else if (msg == SLEEPING)
-		printf(CYN"%s\n"RESET, msg);
-	else if (msg == EATING)
-		printf(MAG"%s\n"RESET, msg);
-	else if (msg == DIED)
-		printf(BLU"%s\n"RESET, msg);
+	pthread_mutex_lock(&philo->input->print);
+	printf(RED"%ld ", timestamp() - philo->input->time_start);
+	printf(YEL"%d "RESET, id);
+	printf(GRN"%s\n"RESET, msg);
+	pthread_mutex_unlock(&philo->input->print);
 }
