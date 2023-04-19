@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 23:00:27 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/19 12:24:18 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/19 20:19:03 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <memory.h>
 
 # define TAKE_FORKS "has taken a fork"
-# define THINKING "is thinking"
 # define SLEEPING "is sleeping"
+# define THINKING "is thinking"
 # define EATING "is eating"
 # define DIED "died"
 
@@ -36,8 +36,9 @@ typedef struct s_input
 	long			sleep_time;
 	int				must_eat;
 	long			time_start;
+	int				die;
 	pthread_mutex_t	print;
-	struct t_philo			*philo;
+	pthread_mutex_t	lock;
 }	t_input;
 
 typedef struct s_philo
@@ -46,9 +47,9 @@ typedef struct s_philo
 	int				id;
 	int				eat_cont;
 	long			t_eat;
-	int				die;
-	pthread_mutex_t	r_fork;
-	pthread_mutex_t	l_fork;
+	int				r_fork;
+	int				l_fork;
+	pthread_mutex_t	fork[200];
 	t_input			*input;
 }	t_philo;
 
@@ -69,8 +70,8 @@ t_philo	*create_philo(t_input *input);
 int		create_thread(t_philo *philo);
 void	*routine(void *philosopher);
 void	philo_eat(t_philo *philo);
-
-// int		philo_sleep(t_philo *philo);
+void	my_sleep(long time);
+void	philo_sleep_think(t_philo *philo);
 
 void	test(t_input *philo);
 void	test2(t_philo *philo);
