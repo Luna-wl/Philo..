@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 23:00:27 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/19 23:49:05 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/20 15:25:44 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,6 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <memory.h>
-
-# define TAKE_FORKS "has taken a fork"
-# define SLEEPING "is sleeping"
-# define THINKING "is thinking"
-# define EATING "is eating"
-# define DIED "died"
 
 typedef struct s_input
 {
@@ -49,6 +43,7 @@ typedef struct s_philo
 	long			t_eat;
 	int				r_fork;
 	int				l_fork;
+	int				take_fork;
 	pthread_mutex_t	fork[200];
 	t_input			*input;
 }	t_philo;
@@ -73,5 +68,8 @@ void	philo_eat(t_philo *philo);
 void	my_sleep(long time);
 void	philo_sleep_think(t_philo *philo);
 int		check_die(t_philo *philo);
+
+int		philo_take_fork(t_philo *philo);
+void	kaboom_mutex(t_philo *philo, t_input *input);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 23:00:33 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/19 14:07:41 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/20 15:27:07 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int ac, char **av)
 	philo = create_philo(&input);
 	if (!create_thread(philo))
 		return (0);
+	kaboom_mutex(philo, &input);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_philo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:42:08 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/19 17:26:56 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/20 13:55:59 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_philo	*create_philo(t_input *input)
 		philo[i].t_eat = 0;
 		philo[i].eat_cont = 0;
 		philo[i].input = input;
+		philo[i].take_fork = 0;
 		philo[i].r_fork = i;
 		philo[i].l_fork = (i + 1) % input->num;
 		pthread_mutex_init(&philo->fork[i], NULL);
