@@ -27,7 +27,6 @@ void	*routine(void *philosopher)
 	while (!philo->input->die)
 	{
 		philo_eat(philo);
-		printf("hi\n");
 		pim_philo(philo, philo->id, CYN"is sleeping (=_= zzzz)");
 		// philo_sleep_think(philo);
 	}
