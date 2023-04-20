@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:41:15 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/19 20:11:45 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/20 17:43:31 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	init_philo_input(t_input *data, char **s)
 		printf(MAG"Error at init mutex\n"RESET);
 	if (pthread_mutex_init(&data->lock, NULL) != 0)
 		printf(MAG"Error at init mutex\n"RESET);
+	create_fork(data);
 }
 
 void	test(t_input *philo)
@@ -61,14 +62,14 @@ void	test(t_input *philo)
 	printf("philo->must_eat = %d\n"RESET, philo->must_eat);
 }
 
-void	test2(t_philo *philo)
-{
-	for (int i = 0; i < philo->input->num; i++)
-	{
-		printf(BLU"philo[%d].id = %d\n", i, philo[i].id);
-		printf("philo[%d].t_eat = %ld\n", i, philo[i].t_eat);
-		printf("philo[%d].eat_cont = %d\n", i, philo[i].eat_cont);
-		printf("philo[%d].r_fork = %d\n", i, philo[i].r_fork);
-		printf("philo[%d].l_fork = %d\n"RESET, i, philo[i].l_fork);
-	}
-}
+// void	test2(t_philo *philo)
+// {
+// 	for (int i = 0; i < philo->input->num; i++)
+// 	{
+// 		printf(BLU"philo[%d].id = %d\n", i, philo[i].id);
+// 		printf("philo[%d].t_eat = %ld\n", i, philo[i].t_eat);
+// 		printf("philo[%d].eat_cont = %d\n", i, philo[i].eat_cont);
+// 		printf("philo[%d].r_fork = %d\n", i, philo[i].r_fork);
+// 		printf("philo[%d].l_fork = %d\n"RESET, i, philo[i].l_fork);
+// 	}
+// }
