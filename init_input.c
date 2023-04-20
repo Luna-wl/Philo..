@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:41:15 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/20 17:43:31 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/20 18:02:44 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,16 @@ void	init_philo_input(t_input *data, char **s)
 		printf(MAG"Error at init mutex\n"RESET);
 	if (pthread_mutex_init(&data->lock, NULL) != 0)
 		printf(MAG"Error at init mutex\n"RESET);
-	create_fork(data);
 }
 
-void	test(t_input *philo)
-{
-	printf(BLU"philo->num = %d\n", philo->num);
-	printf("philo->die = %ld\n", philo->die_time);
-	printf("philo->eat = %ld\n", philo->eat_time);
-	printf("philo->sleep = %ld\n", philo->sleep_time);
-	printf("philo->must_eat = %d\n"RESET, philo->must_eat);
-}
+// void	test(t_input *philo)
+// {
+// 	printf(BLU"philo->num = %d\n", philo->num);
+// 	printf("philo->die = %ld\n", philo->die_time);
+// 	printf("philo->eat = %ld\n", philo->eat_time);
+// 	printf("philo->sleep = %ld\n", philo->sleep_time);
+// 	printf("philo->must_eat = %d\n"RESET, philo->must_eat);
+// }
 
 // void	test2(t_philo *philo)
 // {

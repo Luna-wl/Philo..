@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 23:00:33 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/20 17:45:53 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/20 18:03:33 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int ac, char **av)
 {
 	t_input	input;
-	// t_philo	*philo;
+	t_philo	*philo;
 
 	if (ac < 5 || ac > 6)
 	{
@@ -28,12 +28,10 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	init_philo_input(&input, &av[1]);
-	// philo = create_philo(&input);
-	create_philo(&input);
-	// test(&input);
-	if (!create_thread(&input))
+	philo = create_philo(&input);
+	if (!create_thread(philo))
 		return (0);
-	// kaboom_mutex(&input);
+	kaboom_mutex(philo, &input);
 	return (0);
 }
 

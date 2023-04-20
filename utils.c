@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:57:38 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/20 17:36:05 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/20 18:04:39 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ long	timestamp(void)
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
-void	pim_philo(t_input *input, int id, char *msg)
+void	pim_philo(t_philo *philo, int id, char *msg)
 {
 	// if (!check_die(philo))
 	// 	return ;
-	pthread_mutex_lock(&input->print);
-	printf(RED"%ld ", timestamp() - input->time_start);
+	pthread_mutex_lock(&philo->input->print);
+	printf(RED"%ld ", timestamp() - philo->input->time_start);
 	printf(YEL"%d "RESET, id);
 	printf("%s\n"RESET, msg);
-	pthread_mutex_unlock(&input->print);
+	pthread_mutex_unlock(&philo->input->print);
 }
