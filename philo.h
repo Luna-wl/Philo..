@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 23:00:27 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/19 20:19:03 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/19 23:49:05 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ void	*routine(void *philosopher);
 void	philo_eat(t_philo *philo);
 void	my_sleep(long time);
 void	philo_sleep_think(t_philo *philo);
-
-void	test(t_input *philo);
-void	test2(t_philo *philo);
+int		check_die(t_philo *philo);
 
 #endif

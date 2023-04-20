@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Create d: 2023/04/11 16:50:35 by wluedara          #+#    #+#             */
+/*   Create 7d: 2023/04/11 16:50:35 by wluedara          #+#    #+#             */
 /*   Updated: 2023/04/19 20:47:28 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -14,7 +14,8 @@
 
 int	check_die(t_philo *philo)
 {
-	
+	if (philo->input->die)
+		return (0);
 	return (1);
 }
 
@@ -26,6 +27,8 @@ void	*routine(void *philosopher)
 	while (!philo->input->die)
 	{
 		philo_eat(philo);
+		printf("hi\n");
+		pim_philo(philo, philo->id, CYN"is sleeping (=_= zzzz)");
 		// philo_sleep_think(philo);
 	}
 	return (NULL);
