@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:57:38 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/20 00:09:36 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/21 13:50:43 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ void	my_sleep(long time)
 	long	time_n;
 
 	time_n = timestamp();
+	// printf("time_n = %ld\n", time_n);
+	// printf("time = %ld\n", time);
+	// printf("sum = %ld\n", timestamp() - time_n);
 	while (timestamp() - time_n < time)
 		usleep(1);
 }
@@ -31,8 +34,6 @@ long	timestamp(void)
 
 void	pim_philo(t_philo *philo, int id, char *msg)
 {
-	if (!check_die(philo))
-		return ;
 	pthread_mutex_lock(&philo->input->print);
 	printf(RED"%ld ", timestamp() - philo->input->time_start);
 	printf(YEL"%d "RESET, id);

@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 23:00:33 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/19 14:07:41 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/21 13:30:31 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	main(int ac, char **av)
 	}
 	init_philo_input(&input, &av[1]);
 	philo = create_philo(&input);
-	if (!create_thread(philo))
-		return (0);
+	create_thread(philo);
+	kaboom_mutex(philo, &input);
 	return (0);
 }
 
