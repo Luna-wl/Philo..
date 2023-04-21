@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:57:38 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/20 14:33:48 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/20 23:03:03 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,7 @@ void	my_sleep(long time)
 
 	time_n = timestamp();
 	while (timestamp() - time_n < time)
-	{
-		if (timestamp() - time_n >= time)
-			break;
 		usleep(1);
-	}
 }
 
 long	timestamp(void)

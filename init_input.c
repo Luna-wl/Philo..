@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:41:15 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/19 20:11:45 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/21 14:41:19 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,8 @@ void	test2(t_philo *philo)
 		printf("philo[%d].eat_cont = %d\n", i, philo[i].eat_cont);
 		printf("philo[%d].r_fork = %d\n", i, philo[i].r_fork);
 		printf("philo[%d].l_fork = %d\n"RESET, i, philo[i].l_fork);
+		printf("philo[%d].l_fork = %p\n"RESET, i, philo[i].fork_r);
+		printf("philo[%d].l_fork = %p\n"RESET, i, philo[i].fork_l);
+		printf("============\n");
 	}
 }

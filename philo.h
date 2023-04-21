@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 23:00:27 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/20 15:25:44 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/21 14:40:33 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ typedef struct s_philo
 	int				r_fork;
 	int				l_fork;
 	int				take_fork;
-	pthread_mutex_t	fork[200];
+	pthread_mutex_t	fork;
+	pthread_mutex_t	*fork_r;
+	pthread_mutex_t	*fork_l;
 	t_input			*input;
 }	t_philo;
 
@@ -71,5 +73,8 @@ int		check_die(t_philo *philo);
 
 int		philo_take_fork(t_philo *philo);
 void	kaboom_mutex(t_philo *philo, t_input *input);
+
+void	test(t_input *philo);
+void	test2(t_philo *philo);
 
 #endif

@@ -12,18 +12,18 @@
 
 #include "philo.h"
 
-void	kaboom_mutex(t_philo *philo, t_input *input)
-{
-	int	i;
+// void	kaboom_mutex(t_philo *philo, t_input *input)
+// {
+// 	int	i;
 
-	i = -1;
-	while (++i < philo->input->num)
-	{
-		pthread_mutex_destroy(&philo->fork[i]);
-	}
-	pthread_mutex_destroy(&input->lock);
-	pthread_mutex_destroy(&input->print);
-}
+// 	i = -1;
+// 	while (++i < philo->input->num)
+// 	{
+// 		pthread_mutex_destroy(&philo->fork[i]);
+// 	}
+// 	pthread_mutex_destroy(&input->lock);
+// 	pthread_mutex_destroy(&input->print);
+// }
 
 int	check_die(t_philo *philo)
 {
@@ -34,38 +34,40 @@ int	check_die(t_philo *philo)
 	return (0);
 }
 
-int	check_eat(t_philo *philo)
-{
-	pthread_mutex_lock(&philo->input->lock);
-	if (philo->input->must_eat != -1)
-	{
-		if (philo->eat_cont == philo->input->must_eat)
-			return (0);
-	}
-	else
-	{
-		if (check_die(philo))
-			return (0);
-	}
-	pthread_mutex_unlock(&philo->input->lock);
-	return (1);
-}
+// int	check_eat(t_philo *philo)
+// {
+// 	pthread_mutex_lock(&philo->input->lock);
+// 	if (philo->input->must_eat != -1)
+// 	{
+// 		if (philo->eat_cont == philo->input->must_eat)
+// 			return (0);
+// 	}
+// 	else
+// 	{
+// 		if (check_die(philo))
+// 			return (0);
+// 	}
+// 	pthread_mutex_unlock(&philo->input->lock);
+// 	return (1);
+// }
 
 void	*routine(void *philosopher)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)philosopher;
-	// if (!(philo->id & 1))
-	// 	usleep(philo->input->eat_time * (philo->input->num));
 	// while (!(check_eat(philo)) || check_die(philo))
+	if (philo->id % 2 == 0)
+		my_sleep(philo->input->eat_time);
 	while (1)
 	{
 		if (philo_take_fork(philo) == -1)
 			return (NULL);
+		// // printf("before eat\n");
 		philo_eat(philo);
+		// // printf("after eat\n");
 		philo_sleep_think(philo);
-		// usleep(200);
+		// usleep(500);
 	}
 	return (NULL);
 }
@@ -77,16 +79,18 @@ int	create_thread(t_philo *philo)
 	// i = -1;
 	i = 0;
 	philo->input->time_start = timestamp();
-	printf("start = %ld\n", philo->input->time_start);
+	// printf("start = %ld\n", philo->input->time_start);
 	// while (++i < philo->input->num)
 	while (i < philo->input->num)
 	{
-		if (pthread_create(&philo[i].thread, NULL, routine, &philo[i]))
-			return (0);
-		i += 2;
-		if (philo->id >= philo->input->num && !(philo->id & 1))
-			i = 1;
-		usleep(100);
+		pthread_create(&philo[i].thread, NULL, routine, &philo[i]);
+		i++;
+		usleep(500);
+	}
+	i = -1;
+	while (++i < philo->input->num)
+	{
+		pthread_join(philo[i].thread, NULL);
 	}
 	return (0);
 }
