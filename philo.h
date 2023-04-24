@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 23:00:27 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/20 18:03:53 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/24 20:30:54 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_input
 	int				die;
 	pthread_mutex_t	print;
 	pthread_mutex_t	lock;
+	pthread_mutex_t	*fork;
 }	t_input;
 
 typedef struct s_philo
@@ -43,8 +44,9 @@ typedef struct s_philo
 	long			t_eat;
 	int				r_fork;
 	int				l_fork;
-	int				take_fork;
-	pthread_mutex_t	fork[200];
+	long			take_fork;
+	pthread_mutex_t	*fork_r;
+	pthread_mutex_t	*fork_l;
 	t_input			*input;
 }	t_philo;
 
@@ -64,12 +66,15 @@ t_philo	*create_philo(t_input *input);
 // thread
 int		create_thread(t_philo *philo);
 void	*routine(void *philosopher);
-void	philo_eat(t_philo *philo);
-void	my_sleep(long time);
-void	philo_sleep_think(t_philo *philo);
-int		check_die(t_philo *philo);
-
 int		philo_take_fork(t_philo *philo);
+void	philo_eat(t_philo *philo);
+void	philo_sleep_think(t_philo *philo);
+// utils thread
+void	my_sleep(long time);
+void	check_die(t_philo *philo);
 void	kaboom_mutex(t_philo *philo, t_input *input);
+
+// void	test(t_input *philo);
+void	test2(t_philo *philo);
 
 #endif

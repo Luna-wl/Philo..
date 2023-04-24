@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:41:15 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/20 18:02:44 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/23 14:21:10 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,23 @@ int	check_argv(char **av)
 	return (1);
 }
 
+void	create_fork(t_input *input)
+{
+	int	i;
+
+	i = 0;
+	input->fork = malloc(sizeof(pthread_mutex_t) * input->num);
+	while (i < input->num)
+	{
+		pthread_mutex_init(&input->fork[i], NULL);
+		i++;
+	}
+	if (pthread_mutex_init(&input->print, NULL) != 0)
+		printf(MAG"Error at init mutex\n"RESET);
+	if (pthread_mutex_init(&input->lock, NULL) != 0)
+		printf(MAG"Error at init mutex\n"RESET);
+}
+
 void	init_philo_input(t_input *data, char **s)
 {
 	data->num = (int)my_atoi(s[0]);
@@ -46,10 +63,7 @@ void	init_philo_input(t_input *data, char **s)
 		data->must_eat = (int)my_atoi(s[4]);
 	else
 		data->must_eat = -1;
-	if (pthread_mutex_init(&data->print, NULL) != 0)
-		printf(MAG"Error at init mutex\n"RESET);
-	if (pthread_mutex_init(&data->lock, NULL) != 0)
-		printf(MAG"Error at init mutex\n"RESET);
+	create_fork(data);
 }
 
 // void	test(t_input *philo)
@@ -61,14 +75,16 @@ void	init_philo_input(t_input *data, char **s)
 // 	printf("philo->must_eat = %d\n"RESET, philo->must_eat);
 // }
 
-// void	test2(t_philo *philo)
-// {
-// 	for (int i = 0; i < philo->input->num; i++)
-// 	{
-// 		printf(BLU"philo[%d].id = %d\n", i, philo[i].id);
-// 		printf("philo[%d].t_eat = %ld\n", i, philo[i].t_eat);
-// 		printf("philo[%d].eat_cont = %d\n", i, philo[i].eat_cont);
-// 		printf("philo[%d].r_fork = %d\n", i, philo[i].r_fork);
-// 		printf("philo[%d].l_fork = %d\n"RESET, i, philo[i].l_fork);
-// 	}
-// }
+void	test2(t_philo *philo)
+{
+	for (int i = 0; i < philo->input->num; i++)
+	{
+		printf(BLU"philo[%d].id = %d\n", i, philo[i].id);
+		printf("philo[%d].t_eat = %ld\n", i, philo[i].t_eat);
+		printf("philo[%d].eat_cont = %d\n", i, philo[i].eat_cont);
+		printf("philo[%d].r_fork = %d\n", i, philo[i].r_fork);
+		printf("philo[%d].l_fork = %d\n"RESET, i, philo[i].l_fork);
+		printf("philo->fork[%d] = %p\n"RESET, i, &philo->input->fork[i]);
+		printf("============\n");
+	}
+}

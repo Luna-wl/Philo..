@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:42:08 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/20 18:03:14 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/23 14:21:06 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ t_philo	*create_philo(t_input *input)
 		philo[i].take_fork = 0;
 		philo[i].r_fork = i;
 		philo[i].l_fork = (i + 1) % input->num;
-		pthread_mutex_init(&philo->fork[i], NULL);
 	}
 	return (philo);
 }

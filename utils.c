@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:57:38 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/20 18:04:39 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/24 22:09:31 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	my_sleep(long time)
 	time_n = timestamp();
 	while (timestamp() - time_n < time)
 	{
-		if (timestamp() - time_n >= time)
-			break;
 		usleep(1);
 	}
 }
@@ -35,11 +33,23 @@ long	timestamp(void)
 
 void	pim_philo(t_philo *philo, int id, char *msg)
 {
-	// if (!check_die(philo))
-	// 	return ;
 	pthread_mutex_lock(&philo->input->print);
-	printf(RED"%ld ", timestamp() - philo->input->time_start);
+	printf(RED"%ldms ", timestamp() - philo->input->time_start);
 	printf(YEL"%d "RESET, id);
 	printf("%s\n"RESET, msg);
 	pthread_mutex_unlock(&philo->input->print);
+}
+
+void	kaboom_mutex(t_philo *philo, t_input *input)
+{
+	int	i;
+
+	i = -1;
+	while (++i < philo->input->num)
+	{
+		pthread_mutex_destroy(&philo->input->fork[i]);
+	}
+	pthread_mutex_destroy(&input->lock);
+	pthread_mutex_destroy(&input->print);
+	free(philo);
 }
