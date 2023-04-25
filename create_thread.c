@@ -9,6 +9,7 @@
 /*   Updated: 2023/04/19 20:47:28 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "philo.h"
 
 void	check_die(t_philo *philo)
@@ -23,14 +24,15 @@ void	check_die(t_philo *philo)
 			pthread_mutex_lock(&philo->input->lock);
 			if (timestamp() - philo->t_eat >= philo->input->die_time)
 			{
-				pim_philo(philo, philo->id, RED"died ―(x_x)→");
-				philo->input->die = 1;
+				// philo->input->die = 1;
+				pim_philo(philo, philo->id, RED"died ―(x_x)→", 1);
+				return ;
 			}
 			pthread_mutex_unlock(&philo->input->lock);
-			usleep(100);
+			// usleep(100);
 		}
-		if (philo->input->die == 1)
-			break ;
+		// if (philo->input->die == 1)
+		// 	break ;
 	}
 }
 
@@ -56,15 +58,15 @@ void	*routine(void *philosopher)
 	philo->t_eat = philo->input->time_start;
 	while (check_eat(philo))
 	{
-		if (philo->input->die == 1)
-			return (NULL);
+		// if (philo->input->die == 1)
+		// 	return (NULL);
 		if (philo_take_fork(philo) == -1)
 			return (NULL);
-		if (philo->input->die == 1)
-			return (NULL);
+		// if (philo->input->die == 1)
+		// 	return (NULL);
 		philo_eat(philo);
-		if (philo->input->die == 1)
-			return (NULL);
+		// if (philo->input->die == 1)
+		// 	return (NULL);
 		philo_sleep_think(philo);
 	}
 	return (NULL);
@@ -81,10 +83,11 @@ int	create_thread(t_philo *philo)
 		pthread_create(&philo[i].thread, NULL, routine, &philo[i]);
 	}
 	check_die(philo);
+	// printf("hi\n");
 	i = -1;
 	while (++i < philo->input->num)
 	{
-		pthread_join(philo[i].thread, NULL);
+		pthread_detach(philo[i].thread);
 	}
 	return (0);
 }
