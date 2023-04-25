@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 23:00:27 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/25 22:29:29 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:51:17 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_philo
 {
 	pthread_t		thread;
 	int				id;
-	int				eat_cont;
+	int				eat_count;
 	long			t_eat;
 	int				r_fork;
 	int				l_fork;

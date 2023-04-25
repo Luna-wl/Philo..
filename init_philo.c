@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:42:08 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/25 22:26:10 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:51:23 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_philo	*create_philo(t_input *input)
 	{
 		philo[i].id = i + 1;
 		philo[i].t_eat = 0;
-		philo[i].eat_cont = 0;
+		philo[i].eat_count = 0;
 		philo[i].input = input;
 		philo[i].r_fork = i;
 		philo[i].l_fork = (i + 1) % input->num;
