@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:41:15 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/23 14:21:10 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/25 12:00:47 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,27 +64,4 @@ void	init_philo_input(t_input *data, char **s)
 	else
 		data->must_eat = -1;
 	create_fork(data);
-}
-
-// void	test(t_input *philo)
-// {
-// 	printf(BLU"philo->num = %d\n", philo->num);
-// 	printf("philo->die = %ld\n", philo->die_time);
-// 	printf("philo->eat = %ld\n", philo->eat_time);
-// 	printf("philo->sleep = %ld\n", philo->sleep_time);
-// 	printf("philo->must_eat = %d\n"RESET, philo->must_eat);
-// }
-
-void	test2(t_philo *philo)
-{
-	for (int i = 0; i < philo->input->num; i++)
-	{
-		printf(BLU"philo[%d].id = %d\n", i, philo[i].id);
-		printf("philo[%d].t_eat = %ld\n", i, philo[i].t_eat);
-		printf("philo[%d].eat_cont = %d\n", i, philo[i].eat_cont);
-		printf("philo[%d].r_fork = %d\n", i, philo[i].r_fork);
-		printf("philo[%d].l_fork = %d\n"RESET, i, philo[i].l_fork);
-		printf("philo->fork[%d] = %p\n"RESET, i, &philo->input->fork[i]);
-		printf("============\n");
-	}
 }

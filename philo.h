@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 23:00:27 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/24 22:37:04 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/25 12:00:42 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,7 @@ void	philo_sleep_think(t_philo *philo);
 // utils thread
 void	my_sleep(long time);
 void	check_die(t_philo *philo);
+int		check_eat(t_philo *philo);
 void	kaboom_mutex(t_philo *philo, t_input *input);
-void	tamrai_mutex(t_philo *philo);
-// void	test(t_input *philo);
-void	test2(t_philo *philo);
 
 #endif

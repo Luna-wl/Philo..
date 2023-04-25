@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
+/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 20:05:27 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/24 22:36:49 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/25 16:00:37 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ void	philo_eat(t_philo *philo)
 	pim_philo(philo, philo->id, GRN"is eating ૮₍ ˶•⤙•˶ ₎ა", 0);
 	pthread_mutex_lock(&philo->input->lock);
 	philo->t_eat = timestamp();
+	// printf("eat_t in rountine = %ld\n", philo->t_eat);
 	philo->eat_cont++;
-	pthread_mutex_unlock(&philo->input->lock);
 	my_sleep(philo->input->eat_time);
+	// printf("[%d]eat_cont = %d\n", philo->id, philo->eat_cont);
+	pthread_mutex_unlock(&philo->input->lock);
 	pthread_mutex_unlock(&philo->input->fork[philo->r_fork]);
 	pthread_mutex_unlock(&philo->input->fork[philo->l_fork]);
 }
