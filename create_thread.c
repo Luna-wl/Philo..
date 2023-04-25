@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Create 7d: 2023/04/11 16:50:35 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/19 20:47:28 by wluedara         ###   ########.fr       */
+/*   Created: 2023/04/11 16:50:00 by y wluedara        #+#    #+#             */
+/*   Updated: 2023/04/25 22:48:59 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,21 @@ void	check_die(t_philo *philo)
 {
 	int	i;
 
-	while (check_eat(philo))
+	usleep(1000);
+	while (1)
 	{
 		i = -1;
 		while (++i < philo->input->num)
 		{
 			pthread_mutex_lock(&philo->input->lock);
-			if (philo->input->num == 1)
+			if (timestamp() - philo[i].t_eat >= philo->input->die_time)
 			{
-				my_sleep(philo->input->die_time);
-				pim_philo(philo, philo->id, RED"died ―(x_x)→", 1);
+				// printf("id = %d time = %ld\n", philo[i].id, timestamp() - philo[i].t_eat);
+				pim_philo(philo, philo[i].id, RED"died ―(x_x)→", 1);
 				return ;
 			}
-			if (timestamp() - philo->t_eat >= philo->input->die_time)
+			if (philo->input->eat_full == philo->input->num)
 			{
-				// printf("id = %d -> die_t = %ld\n", philo->id, timestamp() - philo->t_eat);
-				pim_philo(philo, philo->id, RED"died ―(x_x)→", 1);
 				return ;
 			}
 			pthread_mutex_unlock(&philo->input->lock);
@@ -46,7 +45,10 @@ int	check_eat(t_philo *philo)
 	else
 	{
 		if (philo->eat_cont == philo->input->must_eat)
+		{
+			philo->input->eat_full++;
 			return (0);
+		}
 	}
 	return (1);
 }
@@ -56,14 +58,15 @@ void	*routine(void *philosopher)
 	t_philo	*philo;
 
 	philo = (t_philo *)philosopher;
+	philo->t_eat = timestamp();
 	if (philo->id % 2 == 0)
 		my_sleep(philo->input->eat_time);
-	philo->t_eat = philo->input->time_start;
-	while (check_eat(philo))
+	while (1)
 	{
 		if (philo_take_fork(philo) == -1)
 			return (NULL);
-		philo_eat(philo);
+		if (philo_eat(philo))
+			return (NULL);
 		philo_sleep_think(philo);
 	}
 	return (NULL);

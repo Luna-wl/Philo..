@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:57:38 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/24 22:34:00 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:28:45 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	kaboom_mutex(t_philo *philo, t_input *input)
 	i = -1;
 	while (++i < philo->input->num)
 	{
-		pthread_mutex_destroy(&philo->input->fork[i]);
+		pthread_mutex_destroy(&input->fork[i]);
 	}
 	pthread_mutex_destroy(&input->lock);
 	pthread_mutex_destroy(&input->print);

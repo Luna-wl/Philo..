@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 23:00:33 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/24 22:16:58 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:30:04 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,3 @@ int	main(int ac, char **av)
 	kaboom_mutex(philo, &input);
 	return (0);
 }
-
-/*
-./philo 20 400 200 200
-
-- number_of_philosophers: The number of philosophers and also the number of forks.
-
-- time_to_die (in milliseconds): If a philosopher didn’t start eating time_to_die 
-milliseconds since the beginning of their last meal or the beginning of the simulation, 
-they die.
-
-- time_to_eat (in milliseconds): The time it takes for a philosopher to eat. During that 
-time, they will need to hold two forks.
-
-- time_to_sleep (in milliseconds): The time a philosopher will spend sleeping.
-
-- number_of_times_each_philosopher_must_eat (optional argument): If all philosophers
- have eaten at least number_of_times_each_philosopher_must_eat times, the simulation stops. 
- If not specified, the simulation stops when a philosopher dies.
-*/

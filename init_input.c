@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:41:15 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/25 12:00:47 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/25 22:29:50 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	create_fork(t_input *input)
 	int	i;
 
 	i = 0;
-	input->fork = malloc(sizeof(pthread_mutex_t) * input->num);
 	while (i < input->num)
 	{
 		pthread_mutex_init(&input->fork[i], NULL);
@@ -58,10 +57,20 @@ void	init_philo_input(t_input *data, char **s)
 	data->die_time = my_atoi(s[1]);
 	data->eat_time = my_atoi(s[2]);
 	data->sleep_time = my_atoi(s[3]);
+	data->eat_full = 0;
 	data->die = 0;
 	if (s[4])
 		data->must_eat = (int)my_atoi(s[4]);
 	else
 		data->must_eat = -1;
 	create_fork(data);
+}
+
+void	test(t_input *philo)
+{
+	printf(BLU"philo->num = %d\n", philo->num);
+	printf("philo->die = %ld\n", philo->die_time);
+	printf("philo->eat = %ld\n", philo->eat_time);
+	printf("philo->sleep = %ld\n", philo->sleep_time);
+	printf("philo->must_eat = %d\n"RESET, philo->must_eat);
 }

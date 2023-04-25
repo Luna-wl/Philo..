@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 16:26:46 by wluedara          #+#    #+#             */
-/*   Updated: 2023/04/18 21:21:34 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:53:58 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ void	pim_error(char *s, int m)
 	if (m == 1)
 	{
 		printf(RED" ---------------------------\n");
-		printf("|  %s  |\n",s);
+		printf("|  %s  |\n", s);
 		printf(" ---------------------------\n"RESET);
 	}
 	else
 	{
 		printf(BLU" ---------------------------\n");
-		printf("|  %s |\n",s);
+		printf("|  %s |\n", s);
 		printf(" ---------------------------\n"RESET);
 	}
 }
