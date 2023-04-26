@@ -6,7 +6,7 @@
 /*   By: wluedara <Warintorn_L@outlook.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:50:00 by y wluedara        #+#    #+#             */
-/*   Updated: 2023/04/26 01:47:56 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/04/26 13:39:27 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	check_die(t_philo *philo)
 		i = -1;
 		while (++i < philo->input->num)
 		{
+			pthread_mutex_lock(&philo->input->lock);
 			if (timestamp() - philo[i].t_eat >= philo->input->die_time)
 			{
 				pim_philo(philo, philo[i].id, RED"died ―(x_x)→", 1);
@@ -30,6 +31,7 @@ void	check_die(t_philo *philo)
 			{
 				return ;
 			}
+			pthread_mutex_unlock(&philo->input->lock);
 			usleep(200);
 		}
 	}
